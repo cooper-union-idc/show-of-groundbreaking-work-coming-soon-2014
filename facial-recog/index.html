@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../assets/css/reset.css" />
+<link href="../assets/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<link href="../assets/css/print.css" media="print" rel="stylesheet" type="text/css" />
+<!--[if IE]>
+<link href="../assets/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../assets/css/facial.css" />
+<script src="../assets/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="../assets/js/underscore.js" type="text/javascript"></script>
+<script src="../assets/js/raphael-min.js" type="text/javascript"></script>
+<script>
+$(function() {
+  function getRand(min, max) {
+    var rand = Math.random() * (max - min) + min;
+    return rand;
+  };
+  //adjustable 
+  var fWidth = 300,
+      fHeight = 500;	
+  	//To change canvas size, change CSS
+	
+	//Do not adjust
+	var cs = $('#container'),
+	    face,
+	    shapes = [],
+	    cWidth,
+	    cHeight;
+	    
+	function adjustDimensions() {
+	  var wHeight = $(window).height(),
+	      conHeight = $('#controls').outerHeight();
+    cHeight = wHeight - conHeight;
+    if(cHeight<fHeight) { //nooo don't reset the face, just scale it! we're using svgs!
+      fHeight = cHeight - 10;
+      fWidth = fHeight * 0.6;
+    } else {
+      fWidth = 300;
+      fHeight = 500;
+    }
+	  $(cs).css('height', cHeight+'px');
+	}
+
+	function init() {
+	  $(cs).empty();
+	  adjustDimensions();
+	  cWidth = $(cs).width(),
+    centerX = Math.floor(cWidth / 2),
+    centerY = Math.floor(cHeight / 2);
+	  paper = Raphael("container", cWidth, cHeight);
+	  canvas = $(cs).children()[0];
+	  
+	  drawFace(fWidth, fHeight);      
+	}
+	  
+	function drawFace(width, height) {
+	  var rX = width / 2,
+	      rY = height / 2;
+    face = paper.ellipse(centerX, centerY, rX, rY);
+    face.attr({
+      stroke: 'black',
+      'stroke-width': 5
+    });
+	  return face;
+	}
+	function resizeFace(width, height) {
+	  var rX = width / 2,
+	      rY = height / 2;
+	  face.animate({
+	    rx: rX,
+	    ry: rY
+	  });
+	}
+	
+	//find a point on the ellipse
+	function findPoint(width, height, angle) {
+	  //based on: x = a cos(t) && y = b sin(t)
+	  var xPos = ((width / 2) * Math.cos(angle)) + centerX,
+	      yPos = ((height / 2) * Math.sin(angle)) + centerY,
+	      coord = {'x':xPos, 'y':yPos}
+	  return coord;
+	}
+  
+  //draw a curve between two random points on the ellipse
+	function drawLine() {
+	  var lowerBounds = -1*Math.PI/6, //-30º
+	      upperBounds = Math.PI/4; //45º
+	      
+	  var startAngle = getRand(lowerBounds, upperBounds);
+	      start = findPoint(fWidth, fHeight, startAngle),
+	      endAngle = startAngle + Math.PI,
+	      end = findPoint(fWidth, fHeight, endAngle);
+	  var handle1Angle = getRand(Math.PI/2, 3*Math.PI/2), //90º – 270º
+	      handle1 = findPoint(fWidth, fHeight, handle1Angle),
+	      handle2Angle = getRand(-1*Math.PI/2, Math.PI/2), //-90º – 90º
+        handle2 = findPoint(fWidth, fHeight, handle2Angle);
+
+    //visualize where these points are (optional)
+//	  var startPoint = paper.ellipse(start.x, start.y, 10, 10);
+//    	  startPoint.attr({fill: 'blue', 'stroke-width': 0});
+//	  var startHandle = paper.ellipse(handle1.x, handle1.y, 5, 5);
+//    	  startHandle.attr({stroke: 'blue', 'stroke-width': 3});
+//	  var endPoint = paper.ellipse(end.x, end.y, 10, 10);
+//    	  endPoint.attr({fill: 'red', 'stroke-width': 0});
+//	  var endHandle = paper.ellipse(handle2.x, handle2.y, 5, 5);
+//	  endHandle.attr({stroke: 'red', 'stroke-width': 3});
+    
+    var line = {
+      'start'   : start.x+' '+start.y,
+      'handle1' : handle1.x+' '+handle1.y,
+      'handle2' : handle2.x+' '+handle2.y,
+      'end'     : end.x+' '+end.y
+    };
+    return line;
+	}
+	
+	//draw a shape from two lines
+	function drawShape() {
+	  var line1 = drawLine(),
+	      line2 = drawLine();
+	  var path = 'M ' + line1.start + ' C ' + line1.handle1 + ' ' + line1.handle2 + ' ' + line1.end + ' ' +
+	             'L ' + line2.end + ' C ' + line2.handle2 + ' ' + line2.handle1 + ' ' + line2.start + ' ' +
+	             'L ' + line1.start;
+	  var shape = paper.path(path).attr({fill: 'black'});
+	  shapes.push(shape);
+	  return shape;
+	}
+	
+	// draw lil guy shape 
+	var ptsCt = 5;
+	function drawAccent() {
+	  var lowerBounds = 0,
+	      upperBounds = 2*Math.PI,
+	      angle = getRand(lowerBounds, upperBounds),
+	      fraction = getRand(0, 1),
+	      r1 = fWidth * fraction,
+	      r2 = fHeight * fraction,
+	      start = findPoint(r1, r2, angle),
+	      points = ['M', start.x+' '+start.y];
+	  for(var i = 0; i < ptsCt; i++) {
+      points.push('s');
+      var dX = getRand(-20, 20),
+          dY = getRand(-20, 20),
+          cX = getRand(-20, 20),
+          cY = getRand(-20, 20);
+      points.push(dX+' '+dY+' '+cX+' '+cY);
+	  }
+	  var path = points.join(' '),
+	      path = paper.path(path).attr({'stroke-width':10});
+	  shapes.push(path);
+	  return path;
+	}
+	
+	function removeShape() {
+	  var lastShape = shapes[shapes.length-1];
+	  lastShape.remove();
+	  shapes = shapes.splice(0, shapes.length-1);
+	}
+	
+	$(window).on('resize', init);
+	
+  // CONTROLS
+	$('#fhUp').click(function() {
+	  fHeight += 10;
+	  resizeFace(fWidth, fHeight);
+	  return fHeight;
+	});
+	$('#fhDown').click(function() {
+	  fHeight -= 10;
+	  resizeFace(fWidth, fHeight);
+	  return fHeight;
+	});
+	$('#fwUp').click(function() {
+	  fWidth += 10;
+	  resizeFace(fWidth, fHeight);
+	  return fWidth;
+	});
+	$('#fwDown').click(function() {
+	  fWidth -= 10;
+	  resizeFace(fWidth, fHeight);
+	  return fWidth;
+	});
+	$('#reset').click(function() {
+	  fWidth = 300;
+	  fHeight = 500;
+	  resizeFace(fWidth, fHeight);
+	});
+	$('#drawShape').click(drawShape);
+	$('#drawAccent').click(drawAccent);
+	$('#accentSize').on('change', function() {
+	  ptsCt = $(this).val();
+	});
+	$('#undo').click(removeShape);
+	$('#clear').click(init)
+	
+	
+	// RUN IT!
+	init();
+	
+});
+</script>	
+</head>
+<body>
+	<div id="container">
+		
+	</div>
+	<div id="controls">
+	  <button id="fhUp">Taller</button> <button id="fhDown">Shorter</button> <button id="fwUp">Wider</button> <button id="fwDown">Thinner</button> <button id="reset">Reset</button>
+	  <br/><button id="drawShape">Add Shape</button> <button id="drawAccent">Add Accent</button>
+	  <br/>Accent Size: <input type="range" id="accentSize" min="2" max="50" value="5" />
+	  <br/><button id="undo">Undo</button> <button id="clear">Clear Shapes</button>
+	</div>
+</body>
+</html>
+
+
