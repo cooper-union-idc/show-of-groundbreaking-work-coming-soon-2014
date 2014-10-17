@@ -11,14 +11,6 @@ var vendorUrl = window.URL || window.webkitURl;
     navigator.mozGetUserMedia || 
     navigator.msGetUserMedia;
 
-
-
-
-
-
-
-
-
     navigator.getMedia({
         video: true,
         audio: false
