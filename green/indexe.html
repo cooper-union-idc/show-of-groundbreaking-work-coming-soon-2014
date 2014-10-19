@@ -121,9 +121,8 @@
             max: 255,
             values: [ 0, 255 ],
             slide: function( event, ui ) {
-                //$( "#amount" ).val( " " + ui.values[ 0 ] + " -  ");
-                $( "#amountb" ).val( " " + ui.values[ 1 ] );
-               
+                $( "#amount" ).val( " " + ui.values[ 0 ] + " -  " + ui.values[ 1 ]); 
+                               
                 val1 = ui.values[0];
                 val2 = ui.values[1];
                 frameFix();
