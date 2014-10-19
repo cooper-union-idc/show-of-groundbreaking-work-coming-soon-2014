@@ -58,6 +58,25 @@ var runAnalysis = function () {
 
 var frameFix = function (val1,val2,val3,val4,val5,val6) {
 
+    $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 255,
+            values: [ 0, 255 ],
+            slide: function( event, ui ) {
+                //$( "#amount" ).val( " " + ui.values[ 0 ] + " -  ");
+                $( "#amountb" ).val( " " + ui.values[ 1 ] );
+               
+                var val1 = ui.values[0];
+                var val2 = ui.values[1];
+                //console.log(val1 , val2);
+                frameFix(val1,val2);
+            }
+        });
+        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+            " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+
    // console.log(video, video.videoWidth, video.videoHeight)
     hContext.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
