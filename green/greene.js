@@ -66,17 +66,17 @@ var frameFix = function (val1,val2,val3,val4,val5,val6) {
         length = data.length,
         i;
 
-    var r1= val1;
-    var r2= val2;
-    var r3= val3;
-    var r4= val4;
-    var r5= val5;
-    var r6= val6;
-    console.log(r1);
+    // var r1= val1;
+    // var r2= val2;
+    // var r3= val3;
+    // var r4= val4;
+    // var r5= val5;
+    // var r6= val6;
+    console.log(val1);
 
     for (i = 0; i < length; i += 4)
 
-    if ((data[i] < r1 && data[i] > r2) && (data[i+1] < r3 && data[i+1] > r4) && (data[i+2] < r5 && data[i+2] > r6)) data[i + 3] = 0;
+    if ((data[i] < val1 && data[i] > val2) && (data[i+1] < r3 && data[i+1] > r4) && (data[i+2] < r5 && data[i+2] > r6)) data[i + 3] = 0;
 
     dContext.putImageData(frame, 0, 0);
 };
