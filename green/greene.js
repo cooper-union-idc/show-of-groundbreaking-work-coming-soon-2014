@@ -56,7 +56,7 @@ var runAnalysis = function () {
 
  //console.log("efv");
 
-var frameFix = function () {
+var frameFix = function (val1,val2,val3,val4,val5,val6) {
 
     console.log(video, video.videoWidth, video.videoHeight)
     hContext.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
