@@ -124,10 +124,9 @@
                 //$( "#amount" ).val( " " + ui.values[ 0 ] + " -  ");
                 $( "#amountb" ).val( " " + ui.values[ 1 ] );
                
-                var val1 = ui.values[0];
-                var val2 = ui.values[1];
-                console.log(val1 , val2);
-                frameFix(val1,val2);
+                val1 = ui.values[0];
+                val2 = ui.values[1];
+                frameFix();
             }
         });
         $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
@@ -143,9 +142,9 @@
             slide: function( event, ui ) {
                 $( "#amount2" ).val( " " + ui.values[ 0 ] + " -  " + ui.values[ 1 ] );
                 
-                var val3 = ui.values[0];
-                var val4 = ui.values[1];
-                frameFix(val3,val4);
+                val3 = ui.values[0];
+                val4 = ui.values[1];
+                frameFix();
             }
         });
         $( "#amount2" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
@@ -160,15 +159,24 @@
                 slide: function( event, ui ) {
                     $( "#amount3" ).val( " " + ui.values[ 0 ] + " -  " + ui.values[ 1 ] );
 
-                    var val5 = ui.values[0];
-                    var val6 = ui.values[1];
-                    frameFix(val5,val6);
+                    val5 = ui.values[0];
+                    val6 = ui.values[1];
+                    frameFix();
                 }
             });
             $( "#amount3" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
                 " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
         });
+
+  var val1 = "";
+  var val2 = "";
+  var val3 = "";
+  var val4 = "";
+  var val5 = "";
+  var val6 = "";
+ 
+
     
     </script>
 
