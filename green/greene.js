@@ -58,7 +58,7 @@ var runAnalysis = function () {
 
 var frameFix = function (val1,val2,val3,val4,val5,val6) {
 
-    console.log(video, video.videoWidth, video.videoHeight)
+   // console.log(video, video.videoWidth, video.videoHeight)
     hContext.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
     var frame = hContext.getImageData(0, 0, video.videoWidth, video.videoHeight),
@@ -72,11 +72,7 @@ var frameFix = function (val1,val2,val3,val4,val5,val6) {
     var r4= val4;
     var r5= val5;
     var r6= val6;
-    console.log("efv");
-
-    console.log(r1 , r2);
-    console.log(r3 , r4);
-    console.log(r5 , r6);
+    console.log(r1);
 
     for (i = 0; i < length; i += 4)
 
