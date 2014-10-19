@@ -127,7 +127,7 @@
                 var val1 = ui.values[0];
                 var val2 = ui.values[1];
                 console.log(val1 , val2);
-                frameFix();
+                frameFix(val1,val2);
             }
         });
         $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
@@ -160,8 +160,8 @@
                 slide: function( event, ui ) {
                     $( "#amount3" ).val( " " + ui.values[ 0 ] + " -  " + ui.values[ 1 ] );
 
-                    var val3 = ui.values[0];
-                    var val4 = ui.values[1];
+                    var val5 = ui.values[0];
+                    var val6 = ui.values[1];
                     //console.log(val3 , val4);
                 }
             });
