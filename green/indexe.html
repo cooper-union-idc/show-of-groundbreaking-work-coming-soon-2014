@@ -12,15 +12,26 @@
     
     <style type="text/css">
 
+    #controls {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        width: 310px;
+        height: 150px;
+        background-color: black;
+        padding: 50px;
+    }
+
     input {
         width: 100px;
         height: 20px;
+        background-color: black;
     }
 
     #slider-range, #slider-range2, #slider-range3 {
 
         margin-bottom: 40px;
-
+        width: 300px;
     }
 
     p {
@@ -30,9 +41,23 @@
         z-index: 1;
         height: 20px;
         width: 100px;
+        color: cornflowerblue;
+        background-color: black;
 
     }
 
+    span {
+        border: 1px solid cadetblue !important;
+    }
+
+    #amount, #amount2, #amount3 {
+        color: lime;
+    }
+
+    #amountb {
+        width: 20px;
+        height: 20px;
+    }
 
     </style>
 
@@ -40,12 +65,15 @@
     
     <body>
 
+        <div id="controls">
+
             <p>
                 <label for="amount"></label>
-                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                <input type="text" id="amount" readonly style="border:0; font-weight:bold;">
+                <input type="text" id="amountb" readonly style="border:0; font-weight:bold;">
             </p>
 
-            <div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" onclick="frameFix();">
+            <div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
                 <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 33.4%; width: 26.6%;"></div>
                 <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 33.4%;"></span>
                 <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 60%;"></span>
@@ -53,7 +81,7 @@
 
              <p>
                 <label for="amount2"></label>
-                <input type="text" id="amount2" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                <input type="text" id="amount2" readonly style="border:0; font-weight:bold;">
             </p>
 
              <div id="slider-range2" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
@@ -64,7 +92,7 @@
 
              <p>
                 <label for="amount3"></label>
-                <input type="text" id="amount3" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                <input type="text" id="amount3" readonly style="border:0; font-weight:bold;">
             </p>
 
              <div id="slider-range3" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
@@ -72,6 +100,8 @@
                 <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 33.4%;"></span>
                 <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 60%;"></span>
             </div>
+
+        </div>
 
 
 
@@ -91,11 +121,13 @@
             max: 255,
             values: [ 0, 255 ],
             slide: function( event, ui ) {
-                $( "#amount" ).val( " " + ui.values[ 0 ] + " -  " + ui.values[ 1 ] );
+                //$( "#amount" ).val( " " + ui.values[ 0 ] + " -  ");
+                $( "#amountb" ).val( " " + ui.values[ 1 ] );
                
                 var val1 = ui.values[0];
                 var val2 = ui.values[1];
-                //console.log(val1 , val2);
+                console.log(val1 , val2);
+                frameFix();
             }
         });
         $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
