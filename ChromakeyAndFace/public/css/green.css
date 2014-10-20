@@ -1,0 +1,16 @@
+#hCanvas {
+    display: none
+}
+
+#dCanvas {
+    background: url('bg.jpg') no-repeat 0 0 / cover;
+}
+
+input {
+        float: left;
+        width: 100px;
+        height: 20px;
+        border: 1px solid;
+    }
+
+
