@@ -3,7 +3,7 @@
 }
 
 #dCanvas {
-    background: url('bg.jpg') no-repeat 0 0 / cover;
+    background: url('../assets/bg.jpg') no-repeat 0 0 / cover;
 }
 
 #controls {
