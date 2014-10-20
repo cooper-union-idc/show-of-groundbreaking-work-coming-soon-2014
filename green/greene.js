@@ -58,9 +58,14 @@ var runAnalysis = function () {
 
 var frameFix = function () {
 
-    var r1 = 30;
-    var r2 = 180;
+    var r1 = 150;
+    var r2 = 40;
 
+    var r3 = 255;
+    var r4 = 80;
+
+    var r5 = 70;
+    var r6 = 30;
 
     console.log(val1, val2);
      console.log(val3, val4);
@@ -75,8 +80,8 @@ var frameFix = function () {
 
 
     for (i = 0; i < length; i += 4)
-    
-    if ((data[i] < 150 && data[i] > 40) && (data[i+1] < 255 && data[i+1] > 80) && (data[i+2] < 70 && data[i+2] > 30)) data[i + 3] = 0;
+
+    if ((data[i] < r1 && data[i] > r2) && (data[i+1] < r3 && data[i+1] > r4) && (data[i+2] < r5 && data[i+2] > r6)) data[i + 3] = 0;
 
     // if ((data[i] < r1 && data[i] > r2 ) && (data[i+1] < val3 && data[i+1] > val4) && (data[i+2] < val5 && data[i+2] > val6)) data[i + 3] = 0;
 
