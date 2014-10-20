@@ -56,7 +56,6 @@ var runAnalysis = function () {
 
 var frameFix = function () {
 
-    console.log(video, video.videoWidth, video.videoHeight)
     hContext.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
     var frame = hContext.getImageData(0, 0, video.videoWidth, video.videoHeight),
@@ -66,7 +65,9 @@ var frameFix = function () {
 
     for (i = 0; i < length; i += 4)
 
-        if ((data[i] < val2 && data[i] > val1 ) && (data[i+1] < val4 && data[i+1] > val3) && (data[i+2] < val6 && data[i+2] > val5)) data[i + 3] = 0;
+    if ((data[i] < val2 && data[i] > val1 ) && (data[i+1] < val4 && data[i+1] > val3) && (data[i+2] < val6 && data[i+2] > val5)) data[i + 3] = 0;
 
     dContext.putImageData(frame, 0, 0);
 };
+
+
