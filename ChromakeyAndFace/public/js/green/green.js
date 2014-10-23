@@ -25,11 +25,18 @@ var vendorUrl = window.URL || window.webkitURl;
     });
 
 
+    // video.addEventListener('loadeddata', function () {
+    //     hCanvas.setAttribute('width', video.offsetWidth);
+    //     dCanvas.setAttribute('width', video.offsetWidth);
+    //     hCanvas.setAttribute('height', video.offsetHeight);
+    //     dCanvas.setAttribute('height', video.offsetHeight);
+    // }, false);
+
     video.addEventListener('loadeddata', function () {
-        hCanvas.setAttribute('width', video.offsetWidth);
-        dCanvas.setAttribute('width', video.offsetWidth);
-        hCanvas.setAttribute('height', video.offsetHeight);
-        dCanvas.setAttribute('height', video.offsetHeight);
+        hCanvas.setAttribute('width', '640px');
+        dCanvas.setAttribute('width', '640px');
+        hCanvas.setAttribute('height','440px');
+        dCanvas.setAttribute('height', '440px');
     }, false);
 
 

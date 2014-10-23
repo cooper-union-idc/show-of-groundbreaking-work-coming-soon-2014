@@ -3,42 +3,43 @@
 }
 
 #dCanvas {
-    background: url('../assets/bg.jpg') no-repeat 0 0 / cover;
+    position: fixed;
+    bottom: 0;
+    margin: 150px auto;
+    left: 0;
+    right: 0;
 }
 
 #controls {
-    position: absolute;
-    left: 100px;
-    top: 100px;
-    width: 310px;
-    height: 150px;
-    background-color: black;
-    padding: 50px;
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    width: 200px;
+    /*height: 150px;*/
+    padding: 10px;
+    font-size: 10px;
 }
 
 input {
-    width: 100px;
+    /*width: 100px;*/
     height: 20px;
-    background-color: black;
-}
-
-p {
-
-    margin-top: 20px;
-    position: absolute;
-    z-index: 1;
-    height: 20px;
-    width: 100px;
-    background-color: black;
+    background-color: transparent;
 }
 
 #amount, #amount2, #amount3 {
-    color: lime;
+    color: gray;
 }
 
 #slider-range, #slider-range2, #slider-range3 {
+    margin: 0;
+    width: 120px;
+    display: inline-block;
+    margin-right: 20px;
+    float: right;
+    top: 4px;
+}
 
-    margin-bottom: 40px;
-    width: 300px;
+.green-video {
+    opacity: 0;
 }
 
