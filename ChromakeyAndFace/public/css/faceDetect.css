@@ -1,0 +1,93 @@
+.hidden {
+  display: none;
+}
+
+.pano {
+  height: 85%;
+  max-height: 85%;
+}
+
+#overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    -o-transform : scaleX(-1);
+    -webkit-transform : scaleX(-1);
+    transform : scaleX(-1);
+    -ms-filter : fliph; /*IE*/
+    filter : fliph; /*IE*/
+}
+
+#videoel {
+    -o-transform : scaleX(-1);
+    -webkit-transform : scaleX(-1);
+    transform : scaleX(-1);
+    -ms-filter : fliph; /*IE*/
+    filter : fliph; /*IE*/
+    width: 400px;
+    background: black;
+    border: 1px solid gray;
+}
+#recorded {
+    float: right;
+}
+
+#container {
+    position : relative;
+    
+    /*margin : 0px auto;*/
+}
+
+#content {
+   margin-top: 70px;
+   max-width: 950px;
+   height: 500px;
+   top: 150px;
+   position: absolute;
+   margin: 0 auto;
+   left: 0;
+   right: 0;
+   padding: 10px;
+   border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+#sketch {
+    display: none;
+}
+
+#filter {
+    display: none;
+}
+
+#percentage {
+    float : right;
+}
+
+h2 {
+    font-weight : 400;
+}
+
+.nogum {
+    display : none;
+}
+
+.btn {
+    font-family: 'Lato';
+    font-size: 14px;
+}
+
+#container .btn {
+    font-size: 14px !important;
+}
+
+button, input[type=button] {
+    font-size: 14px;
+}
+
+.hide {
+    display : none;
+}
+
+.nohide {
+    display : block;
+}
