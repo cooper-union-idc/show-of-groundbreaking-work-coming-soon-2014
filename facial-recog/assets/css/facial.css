@@ -1,11 +1,11 @@
 body{
-  background: #333;
+  background: black;
   font-family: monospace;
 }
 #container{
   width: 100%;
   margin: auto;
-  background: whitesmoke;
+  background: black;
   text-align: center;
 }
 
@@ -36,4 +36,8 @@ body{
 }
 #controls button+button{
   margin-left: 10px;
+}
+#controls .spacer{
+  width: 50px;
+  display: inline-block;
 }
