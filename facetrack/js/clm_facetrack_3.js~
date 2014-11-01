@@ -1,3 +1,4 @@
+
 	var vid = document.getElementById('videoel');
 	var overlay = document.getElementById('overlay');
 	var overlayCC = overlay.getContext('2d');
@@ -5,10 +6,14 @@
 	var ctrack = new clm.tracker({useWebGL : true});
 	var lefteye = document.getElementById('leftmask');
 	var newlcy, newlcx,curscore;
-	var maxc = 30;
+	var maxframes = 100;
+	// var imgstream=new Array(maxframes);
+	// var fullstream=new Array(maxframes); //only latest completed capture
 	var playback = document.getElementById('recorded');
+	var i=0,p=-1;
 	var fps = 30;
-		
+	var n = 0, potential, recording, playingfull;
+	
 	width = 400;
 	height = 300;
 	
@@ -125,7 +130,7 @@ function shouldRec(threshold){
 }
 
 function endRecording(recording){
-	return recording.length === maxc;
+	return recording.length === 100;
 }
 
 function saveRec(recording){
@@ -152,9 +157,11 @@ function drawLoop(){
 function startVideo(){
 	ctrack.start(vid);
 	setInterval(function(){
+		
 		checkToRec();
+		
 		drawLoop();
-	}, maxc);
+	}, 50);
 }
 count =0;
 setInterval(function(){
@@ -163,6 +170,6 @@ setInterval(function(){
 			playback.src=finalRecording[count];
 			count++;
 		}
-		if(count === maxc-1){count=0;}
+		if(count === 99){count=0;}
 
-}, maxc)
+}, 100)
