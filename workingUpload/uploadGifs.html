@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>🔥 UPLOAD 🔥 </title>
+  <link href="./styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="firepano.css">
+  <style>
+  .target {
+	mask: url("#c1");	
+  }
+  </style>
+</head>
+<body id="body">
+  	<!-- <h1>upload gifs to firebase</h1>
+  	<input type="file" accept="image/*" capture="camera" id="file-upload">
+ -->
+  	<div id="content">
+		<div id="container">
+			<video id="videoel" class="target" width="400" height="300" preload="auto" loop>
+			</video>
+			<canvas id="overlay" class="target" width="400" height="300"></canvas>
+		</div>
+		<br/>
+		<input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
+		<div id="text">
+			<span id='percentage'> Score: 0% </span>
+		</div>
+	</div>
+	
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/firebase.js"></script>
+	<!--<script src="js/firepano_upload.js"></script>  take out because copied all into clm_facetrack_3.js -->
+
+	<script src="./js/utils.js"></script>
+	<script src="./js/numeric-1.2.6.min.js"></script>
+	<script src="./js/mosse.js"></script>
+	<script src="./js/jsfeat-min.js"></script>
+	<script src="./js/frontalface.js"></script>
+	<script src="./js/jsfeat_detect.js"></script>
+	<script src="./js/left_eye_filter.js"></script>
+	<script src="./js/right_eye_filter.js"></script>
+	<script src="./js/nose_filter.js"></script>
+	<script src="./models/model_pca_20_svm.js"></script>
+	<script src="./js/clm.js"></script>
+	<script src="./js/svmfilter_webgl.js"></script>
+	<script src="./js/svmfilter_fft.js"></script>
+	<script src="./js/mossefilter.js"></script>
+	<script src="./js/Stats.js"></script>
+
+	<!--<script src="./js/clm_facetrack_3.js"></script>-->
+
+	<script>
+		//figure out how to adjust frames to 20 and lower fps
+	
+
+	var vid = document.getElementById('videoel');
+	var overlay = document.getElementById('overlay');
+	var overlayCC = overlay.getContext('2d');
+	var psrElement = document.getElementById('percentage');
+	var ctrack = new clm.tracker({useWebGL : true});
+	var lefteye = document.getElementById('leftmask');
+	var newlcy, newlcx,curscore;
+	var maxframes = 20;
+
+	////////////// ADDING FIREBASE STUFF ////////////////
+	var firebaseRef = 'https://col.firebaseio.com/';
+	var base = new Firebase(firebaseRef);
+	var gifsRef = new Firebase(firebaseRef + 'gifs/');
+	//document.getElementById("file-upload").addEventListener('change', pushGif, false);
+	var lclCount;
+
+	base.once('value', function(dataSnapshot) {
+  		lclCount = dataSnapshot.child('gifs').numChildren();
+  		console.log("There are " + lclCount + " gifs.");
+	});
+
+	function pushGif(listofGifFrames) {
+		//define new child location for new gif
+		console.log("push 12 frames ");
+		var pushGifLocation = new Firebase(gifsRef + '/' );
+		//take out splitlistofGifFrames when frames come in @only 12
+		var splitlistofGifFrames = listofGifFrames.slice(0,12);
+		pushGifLocation.push(splitlistofGifFrames);
+	}
+////////////////////////////////////////////////////////
+
+	// var imgstream=new Array(maxframes);
+	// var fullstream=new Array(maxframes); //only latest completed capture
+	var playback = document.getElementById('recorded');
+	var i=0,p=-1;
+	var fps = 30;
+	var n = 0, potential, recording, playingfull;
+	
+	width = 400;
+	height = 300;
+	
+	ctrack.init(pModel);
+	stats = new Stats();
+	stats.domElement.style.position = 'absolute';
+	stats.domElement.style.top = '0px';
+	document.getElementById('container').appendChild( stats.domElement );
+	
+	function enablestart() {
+		var startbutton = document.getElementById('startbutton');
+		startbutton.value = "start";
+		startbutton.disabled = null;
+	}
+	
+	var insertAltVideo = function(video) {
+		if (supports_video()) {
+			if (supports_ogg_theora_video()) {
+				video.src = "./media/cap12_edit.ogv";
+			} else if (supports_h264_baseline_video()) {
+				video.src = "./media/cap12_edit.mp4";
+			} else {
+				return false;
+			}
+			//video.play();
+			return true;
+		} else return false;
+	}
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+	window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
+
+	// check for camerasupport
+	if (navigator.getUserMedia) {
+		// set up stream
+		var videoSelector = {video : true};
+		if (window.navigator.appVersion.match(/Chrome\/(.*?) /)) {
+			var chromeVersion = parseInt(window.navigator.appVersion.match(/Chrome\/(\d+)\./)[1], 10);
+			if (chromeVersion < 20) {
+				videoSelector = "video";
+			}
+		};
+	
+		navigator.getUserMedia(videoSelector, function( stream ) {
+			if (vid.mozCaptureStream) {
+				vid.mozSrcObject = stream;
+			} else {
+				vid.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
+			}
+			vid.play();
+		}, function(code) {
+			alert("h"+code);
+			insertAltVideo(vid);
+			document.getElementById('gum').className = "hide";
+			document.getElementById('nogum').className = "nohide";
+			//alert("There was some problem trying to fetch video from your webcam, using a fallback video instead.");
+		});
+	} else {
+		insertAltVideo(vid);
+		document.getElementById('gum').className = "hide";
+		document.getElementById('nogum').className = "nohide";
+		alert("Your browser does not seem to support getUserMedia, using a fallback video instead.");
+	}
+
+	vid.addEventListener('canplay', enablestart, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var recording = [];
+var finalRecording;
+
+function makeRecord(dataURL, recording){
+	recording.push(dataURL);
+	return recording;
+}
+
+function checkToRec(){
+	
+	var record = shouldRec(ctrack.getScore().toFixed(4));
+	
+	if(record){
+		console.log("recording...");
+		var dataURL = overlay.toDataURL();
+		if(endRecording(makeRecord(dataURL, recording))){
+			console.log("save recording because recording length is 20 ");
+			saveRec(recording);
+		}
+	} else {
+		recording = [];
+	}
+}
+
+function shouldRec(threshold){
+	if ((threshold > .7) || (isRecording() && threshold > .65)) {
+		return true;	
+	} else {
+		return false;
+	}
+}
+
+function endRecording(recording){
+	return recording.length === maxframes;
+}
+
+function saveRec(recording){
+	finalRecording = recording;
+	pushGif(finalRecording);
+	recording.length = [];
+}
+
+function isRecording(){
+	return recording.length > 0;
+}
+
+function playRec(){}
+
+function drawLoop(){
+	overlayCC.clearRect(0, 0, width, height);
+	overlayCC.drawImage(vid, 0, 0, width, height);
+	//ADDED TODAY///
+	var positions = ctrack.getCurrentPosition();
+	var lefteye = document.getElementById('leftmask');
+	var newlcx = (positions[41][0]/width).toFixed(3);
+	var newlcy = (positions[41][1]/height).toFixed(3);
+	//console.log("nose coords: " + newlcx + ", " + newlcy);
+	lefteye.setAttribute('cx', newlcx);
+	lefteye.setAttribute('cy', newlcy);
+	////////////////
+
+	if (ctrack.getCurrentPosition()) {
+		ctrack.draw(overlay);
+		var curscore = ctrack.getScore().toFixed(4);
+		psrElement.innerHTML = "Score : " + curscore;
+	}
+}
+
+
+function startVideo(){
+	ctrack.start(vid);
+	setInterval(function(){
+		
+		checkToRec();
+		
+		drawLoop();
+	}, 50);
+}
+count =0;
+setInterval(function(){
+
+		if(finalRecording){
+			// playback.src=finalRecording[count];
+			count++;
+		}
+		if(count === maxframes-1){count=0;}
+
+}, 100)
+
+
+	</script>
+
+
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <mask id="c1" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+      		<ellipse id="leftmask" cx="0.5" cy="0.5" rx="0.25" ry="0.45" fill="white"/>
+    	</mask>
+      </defs>
+    </svg>
+
+</body>
+
+</html>
