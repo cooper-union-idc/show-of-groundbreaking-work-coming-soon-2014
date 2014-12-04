@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+<title>WoRdlOcK</title>
+<link rel="stylesheet" href="wordlock.css">
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>   
+<script src="cycle.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#ring1').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r1up',
+		prev: '#r1down',
+	});
+	$('#ring2').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r2up',
+		prev: '#r2down',
+	});
+		$('#ring3').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r3up',
+		prev: '#r3down',
+	});
+		$('#ring4').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r4up',
+		prev: '#r4down',
+	});
+		$('#ring5').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r5up',
+		prev: '#r5down',
+	});
+});
+</script>
+<!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
+</head>
+
+<body>
+<a href = "https://cdn.elie.net/publications/text-based-captcha-strengths-and-weaknesses.pdf">The paper</a>
+<a href = "http://www.networkworld.com/article/2182764/malware-cybercrime/researchers-defeat-captcha-on-popular-websites.html">Recaptcha</a>
+<a href = "http://techcrunch.com/2014/12/03/googles-recaptcha-mostly-does-away-with-those-annoying-captchas/">so guess what</a>
+<div class="g-recaptcha" data-sitekey="6Ld0zP4SAAAAANzqDwr89Pj-S7gU87fRudsp-7mu"></div>
+	<div id = 'wrapper'>
+		<div class = 'ring'>
+			<div id = 'r1up' class = 'next barrow'></div>
+			<div class="pics" id="ring1"> 
+				<img src="images/R1P4.jpg" width="230" height="230" /> 
+				<img src="images/R1P3.jpg" width="230" height="230" /> 
+				<img src="images/R1P2.jpg" width="230" height="230" /> 
+				<img src="images/R1P1.jpg" width="230" height="230" /> 
+				<img src="images/R1P8.jpg" width="230" height="230" /> 
+				<img src="images/R1P7.jpg" width="230" height="230" /> 
+				<img src="images/R1P6.jpg" width="230" height="230" /> 
+				<img src="images/R1P5.jpg" width="230" height="230" /> 
+			</div> 
+			<div id = 'r1down' class = 'prev warrow'></div>
+		</div>
+		<div class = 'ring'>
+			<div id = 'r2up' class = 'next warrow'></div>
+			<div class="pics" id="ring2"> 
+				<img src="images/R2P4.jpg" width="230" height="230" /> 
+				<img src="images/R2P3.jpg" width="230" height="230" /> 
+				<img src="images/R2P2.jpg" width="230" height="230" /> 
+				<img src="images/R2P1.jpg" width="230" height="230" />  
+				<img src="images/R2P8.jpg" width="230" height="230" /> 
+				<img src="images/R2P7.jpg" width="230" height="230" /> 
+				<img src="images/R2P6.jpg" width="230" height="230" /> 
+				<img src="images/R2P5.jpg" width="230" height="230" /> 
+			</div> 
+			<div id = 'r2down' class = 'prev barrow'></div>
+		</div>
+		<div class = 'ring'>
+			<div id = 'r3up' class = 'next barrow'></div>
+			<div class="pics" id="ring3"> 
+				<img src="images/R3P4.jpg" width="230" height="230" /> 
+				<img src="images/R3P3.jpg" width="230" height="230" /> 
+				<img src="images/R3P2.jpg" width="230" height="230" /> 
+				<img src="images/R3P1.jpg" width="230" height="230" /> 
+				<img src="images/R3P8.jpg" width="230" height="230" /> 
+				<img src="images/R3P7.jpg" width="230" height="230" /> 
+				<img src="images/R3P6.jpg" width="230" height="230" /> 
+				<img src="images/R3P5.jpg" width="230" height="230" /> 
+			</div> 
+			<div id = 'r3down' class = 'prev warrow'></div>
+		</div>
+		<div class = 'ring'>
+			<div id = 'r4up' class = 'next warrow'></div>
+			<div class="pics" id="ring4"> 
+				<img src="images/R4P4.jpg" width="230" height="230" /> 
+				<img src="images/R4P3.jpg" width="230" height="230" /> 
+				<img src="images/R4P2.jpg" width="230" height="230" /> 
+				<img src="images/R4P1.jpg" width="230" height="230" /> 
+				<img src="images/R4P8.jpg" width="230" height="230" /> 
+				<img src="images/R4P7.jpg" width="230" height="230" /> 
+				<img src="images/R4P6.jpg" width="230" height="230" /> 
+				<img src="images/R4P5.jpg" width="230" height="230" /> 
+			</div> 
+			
+			<div id = 'r4down' class = 'prev barrow'></div>
+		</div>
+			<div class = 'ring'>
+			<div id = 'r5up' class = 'next barrow'></div>
+			<div class="pics" id="ring5"> 
+				<img src="images/R5P4.jpg" width="230" height="230" /> 
+				<img src="images/R5P3.jpg" width="230" height="230" /> 
+				<img src="images/R5P2.jpg" width="230" height="230" /> 
+				<img src="images/R5P1.jpg" width="230" height="230" /> 
+				<img src="images/R5P8.jpg" width="230" height="230" /> 
+				<img src="images/R5P7.jpg" width="230" height="230" /> 
+				<img src="images/R5P6.jpg" width="230" height="230" /> 
+				<img src="images/R5P5.jpg" width="230" height="230" /> 
+			</div> 
+			<div id = 'r5down' class = 'prev warrow'></div>
+		</div>
+	</div>
+</body
+	
+

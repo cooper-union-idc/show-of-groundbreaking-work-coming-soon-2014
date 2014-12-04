@@ -1,0 +1,54 @@
+body {
+	background-color:#0f0e11;
+	font-family: 'Ubuntu Mono';
+	font-weight:bold;
+	font-size:2em;
+	color: #ECF0F1;
+}
+a {
+	text-decoration:none;
+	color: #ECF0F1;
+}
+.pics img {   
+    width:  230px; 
+    height: 230px; 
+    top:  0; 
+    left: 0 
+} 
+
+.next {
+	width:0;
+	height:0;
+	border-style:solid;
+	border-width:0 115px 100px 115px;
+	border-color: transparent transparent #0f0e11 transparent;
+}
+.prev {
+	width:0;
+	height:0;
+	border-style:solid;
+	border-width:100px 115px 0 115px;
+	border-color: #0f0e11 transparent transparent transparent;
+}
+.next.warrow{
+	border-color: transparent transparent #ECF0F1 transparent;
+}
+.prev.warrow{
+	border-color: #ECF0F1 transparent transparent transparent;
+}
+.next.barrow{
+	border-color: transparent transparent #0f0e11 transparent;
+}
+.prev.barrow{
+	border-color: black transparent transparent transparent;
+}
+.ring{
+	float:left;
+}
+#wrapper{
+	margin:150px auto;
+	width:1150px;
+	height:430px;
+	padding: 70px;
+	background-image: url('images/background.jpg');
+}

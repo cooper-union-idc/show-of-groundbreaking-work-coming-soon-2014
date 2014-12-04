@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+<title>WoRdlOcK</title>
+<link rel="stylesheet" href="wordlock.css">
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>   
+<script src="cycle.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#ring1').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r1up',
+		prev: '#r1down',
+	});
+	$('#ring2').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r2up',
+		prev: '#r2down',
+	});
+		$('#ring3').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r3up',
+		prev: '#r3down',
+	});
+		$('#ring4').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r4up',
+		prev: '#r4down',
+	});
+		$('#ring5').cycle({
+		fx: 'scrollVert', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		timeout: 0,
+		next: '#r5up',
+		prev: '#r5down',
+	});
+});
+</script>
+</head>
+
+<body>
+	<div id = 'wrapper'>
+		<div class = 'ring'>
+			<div id = 'r1up' class = 'next barrow'></div>
+			<div class="pics" id="ring1"> 
+				<img src="images/img1.jpg" width="200" height="200" /> 
+				<img src="images/img2.png" width="200" height="200" /> 
+				<img src="images/img3.jpg" width="200" height="200" /> 
+			</div> 
+			<div id = 'r1down' class = 'prev barrow'></div>
+		</div>
+		<div class = 'ring'>
+			<div id = 'r2up' class = 'next warrow'></div>
+			<div class="pics" id="ring2"> 
+				<img src="images/img1.jpg" width="200" height="200" /> 
+				<img src="images/img2.png" width="200" height="200" /> 
+				<img src="images/img3.jpg" width="200" height="200" /> 
+			</div> 
+			<div id = 'r2down' class = 'prev warrow'></div>
+		</div>
+		<div class = 'ring'>
+			<div id = 'r3up' class = 'next barrow'></div>
+			<div class="pics" id="ring3"> 
+				<img src="images/img1.jpg" width="200" height="200" /> 
+				<img src="images/img2.png" width="200" height="200" /> 
+				<img src="images/img3.jpg" width="200" height="200" /> 
+			</div> 
+			<div id = 'r3down' class = 'prev barrow'></div>
+		</div>
+		<div class = 'ring'>
+			<div id = 'r4up' class = 'next warrow'></div>
+			<div class="pics" id="ring4"> 
+				<img src="images/img1.jpg" width="200" height="200" /> 
+				<img src="images/img2.png" width="200" height="200" /> 
+				<img src="images/img3.jpg" width="200" height="200" /> 
+			</div> 
+			<div id = 'r4down' class = 'prev warrow'></div>
+		</div>
+			<div class = 'ring'>
+			<div id = 'r5up' class = 'next barrow'></div>
+			<div class="pics" id="ring5"> 
+				<img src="images/img1.jpg" width="200" height="200" /> 
+				<img src="images/img2.png" width="200" height="200" /> 
+				<img src="images/img3.jpg" width="200" height="200" /> 
+			</div> 
+			<div id = 'r5down' class = 'prev barrow'></div>
+		</div>
+	</div>
+</body
+	
+
