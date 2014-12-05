@@ -1,0 +1,43 @@
+#hCanvas {
+    display: none
+}
+
+#dCanvas {
+    background: url('bg.jpg') no-repeat 0 0 / cover;
+}
+
+#controls {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    width: 310px;
+    height: 150px;
+    background-color: black;
+    padding: 50px;
+}
+
+input {
+    width: 100px;
+    height: 20px;
+    background-color: black;
+}
+
+p {
+
+    margin-top: 20px;
+    position: absolute;
+    z-index: 1;
+    height: 20px;
+    width: 100px;
+    background-color: black;
+}
+
+#amount, #amount2, #amount3 {
+    color: lime;
+}
+
+#slider-range, #slider-range2, #slider-range3 {
+
+    margin-bottom: 40px;
+    width: 300px;
+}
