@@ -4,3 +4,8 @@ This is the website version/documentation of Cooper Union's Advanced Interactive
 ...
 
 We're working on it 
+
+
+....
+
+are we live?
